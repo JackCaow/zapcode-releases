@@ -90,6 +90,7 @@ VM 镜像已经包含在包内，无需首次联网下载；使用远端模型 A
 - 本机通过：包内 Zap 自动发现 zapVM、真实 Linux VM 启动、挂载读写、`.git` 写保护、换目录解压复测。
 - 打包链路使用本地固定响应测试服务驱动 CLI，VM 和文件操作均为真实执行；不把它当成模型能力测试。
 - 已通过镜像签名校验、包内文件 SHA256 校验及 10 项安装/打包测试；未声称全仓测试全绿。
+- Homebrew 本机验证通过：`brew install`、`brew test`（版本、VM 签名、能力检查、全部文件摘要），以及 `zap-vm-preview` 实际入口的 VM 挂载/写保护闭环。原 `zap` / `zapdev` 内容未变。
 - Guest 内嵌 Resident Runner 未重新构建，本包不是新 Resident Agent 的部署验收。
 - Guest 命令失败仍可能被包装为 `unavailable` / 退出码 69，这是已知错误分类问题。
 - 本包来自未提交的开发工作树，不能仅凭基线 commit 重建；二进制摘要及镜像信息见包内 `build-info.json`。
