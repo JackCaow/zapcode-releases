@@ -15,6 +15,43 @@ Zap 的公开分发仓库，用于发布安装包、校验文件和使用说明�
 > 如遇系统安全提示，请停止并反馈，不要全局关闭 Gatekeeper 或 SIP。
 > 需要开箱即用安装体验的用户，请等待签名、公证完成后的版本。
 
+## Homebrew 安装
+
+本仓库同时作为自定义 Tap。由于仓库名没有 `homebrew-` 前缀，首次添加时请显式指定 URL：
+
+```sh
+brew tap JackCaow/zapcode-releases https://github.com/JackCaow/zapcode-releases
+```
+
+如果 Homebrew 提示需要信任第三方 Formula，请先检查
+[Formula 源码](Formula/zap-vm-preview.rb)，再仅信任这一项（支持 `brew trust` 的版本）：
+
+```sh
+brew trust --formula jackcaow/zapcode-releases/zap-vm-preview
+```
+
+安装并从项目目录启动：
+
+```sh
+brew install jackcaow/zapcode-releases/zap-vm-preview
+zap-vm-preview
+```
+
+该命令不覆盖现有 `zap`、`zapdev` 或独立 `zapvm`。仍使用独立的
+`~/.zapcode-local-vm` 数据目录，首次通过 `/connect` 配置模型。
+Homebrew 会校验固定下载包的 SHA256；它不能代替 Apple 签名、公证。
+
+升级或卸载前，请先结束预览版任务，并用 `brew info zap-vm-preview` 中的命令停止对应 VM daemon：
+
+```sh
+brew update
+brew upgrade jackcaow/zapcode-releases/zap-vm-preview
+# 不再需要时：
+brew uninstall zap-vm-preview
+```
+
+卸载不会删除用户配置、会话和 VM 工作状态。
+
 ## 下载与启动
 
 在同一目录下载压缩包和校验文件。可通过上面的链接下载，也可以在终端执行：
@@ -56,7 +93,7 @@ VM 镜像已经包含在包内，无需首次联网下载；使用远端模型 A
 - Guest 内嵌 Resident Runner 未重新构建，本包不是新 Resident Agent 的部署验收。
 - Guest 命令失败仍可能被包装为 `unavailable` / 退出码 69，这是已知错误分类问题。
 - 本包来自未提交的开发工作树，不能仅凭基线 commit 重建；二进制摘要及镜像信息见包内 `build-info.json`。
-- Homebrew 与 npm 安装入口尚未发布。不要把本预览包交给旧版自动安装器：文件名和目录布局不同。
+- npm 安装入口尚未发布。不要把本预览包交给旧版自动安装器：文件名和目录布局不同。
 
 ## 问题反馈
 
