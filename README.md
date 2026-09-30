@@ -15,11 +15,12 @@ Zap 的公开分发仓库，用于发布安装包、校验文件和使用说明�
 brew tap JackCaow/zapcode-releases https://github.com/JackCaow/zapcode-releases
 brew install jackcaow/zapcode-releases/zapagent
 zapAgent
+# Equivalent commands: zap / zapcode
 ```
 
 如 Homebrew 要求信任 Formula，检查 [源码](Formula/zapagent.rb) 后运行
 `brew trust --formula jackcaow/zapcode-releases/zapagent`。
-若已有同名 `zapAgent`，不要使用 `--overwrite`；先 `brew install --skip-link jackcaow/zapcode-releases/zapagent`，
+若已有同名 `zapAgent`、`zap` 或 `zapcode`，不要使用 `--overwrite`；先 `brew install --skip-link jackcaow/zapcode-releases/zapagent`，
 通过 `$(brew --prefix jackcaow/zapcode-releases/zapagent)/bin/zapAgent` 启动，确认后再自行选择默认命令。
 不会修改 `zapdev` 或旧的 `zap-vm-preview`。
 
