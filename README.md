@@ -2,6 +2,36 @@
 
 Zap 的公开分发仓库，用于发布安装包、校验文件和使用说明。应用源码不存放在本仓库。
 
+## zapAgent — macOS Apple Silicon 正式版 1.13.0
+
+- [正式版下载及校验文件](https://github.com/JackCaow/zapcode-releases/releases/tag/v1.13.0)
+- 使用个人 Developer ID Application 证书签名并通过 Apple 公证。
+- 仅支持 macOS Apple Silicon；Intel Mac、Linux、Windows 和 npm 安装入口不属于此次发布。
+- Agent 在 Host 上运行，进程工具进入本地 VM；**不是整个 Agent 或 Host 的完全隔离**。
+- 镜像已内置，不含模型、API Key 或用户会话。首次通过 `/connect` 配置模型。
+- TAR/ZIP 内的命令行二进制已公证但没有 stapled ticket；首次 Gatekeeper 校验需要联网。不要移除 quarantine 或关闭 Gatekeeper。
+
+```sh
+brew tap JackCaow/zapcode-releases https://github.com/JackCaow/zapcode-releases
+brew install jackcaow/zapcode-releases/zapagent
+zapAgent
+```
+
+如 Homebrew 要求信任 Formula，检查 [源码](Formula/zapagent.rb) 后运行
+`brew trust --formula jackcaow/zapcode-releases/zapagent`。
+若已有同名 `zapAgent`，不要使用 `--overwrite`；先 `brew install --skip-link jackcaow/zapcode-releases/zapagent`，
+通过 `$(brew --prefix jackcaow/zapcode-releases/zapagent)/bin/zapAgent` 启动，确认后再自行选择默认命令。
+不会修改 `zapdev` 或旧的 `zap-vm-preview`。
+
+正式版默认数据目录为 `~/.zapcode-vm`，升级或卸载前先结束任务并停止该 profile 的 VM daemon：
+
+```sh
+"$(brew --prefix jackcaow/zapcode-releases/zapagent)/libexec/zapvm-runtime/bin/zapvm" daemon stop --endpoint "$HOME/.zapcode-vm/runtime-state/zapvm/daemon.sock"
+```
+
+手动安装时，先核验下载的 `.sha256`，解压后在项目目录调用完整路径的 `start-local-vm.command`。
+请保留整个包目录。发布附带源码版本、签名、公证日志和校验文件；本机验证不等于所有用户机器均已验收。
+
 ## macOS Apple Silicon 内测版
 
 当前预览版本：**v1.12.0-vm-preview.1**。仅支持 Apple Silicon（arm64），未验证 Intel Mac。
