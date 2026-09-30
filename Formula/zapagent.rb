@@ -11,6 +11,9 @@ class Zapagent < Formula
 
   def install
     libexec.install Dir["*"]
+    # Supply top-level metadata so Homebrew does not move the checksum-covered
+    # README out of libexec during its automatic metadata installation.
+    cp libexec/"README.md", prefix/"README.md"
     (bin/"zapAgent").write_env_script libexec/"start-local-vm.command", {}
   end
 
