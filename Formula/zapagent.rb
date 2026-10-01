@@ -1,9 +1,9 @@
 class Zapagent < Formula
   desc "Terminal AI agent with bundled local VM for Apple Silicon"
   homepage "https://github.com/JackCaow/zapcode-releases"
-  url "https://github.com/JackCaow/zapcode-releases/releases/download/v1.14.2/zapAgent-macos-arm64-1.14.2.tar.gz"
+  url "https://github.com/JackCaow/zapcode-releases/releases/download/v1.14.2/zapAgent-macos-arm64-1.14.2-sparse.tar.gz"
   version "1.14.2"
-  sha256 "0ba9a1e553e9be484bfea2d5ca52ffe0f3987d152f57b85752e64f344443b96e"
+  sha256 "e8313ded7399b786e4040f147422ad143c1fad3ecd3c81e67b120419a5636aff"
 
   depends_on arch: :arm64
   depends_on :macos
