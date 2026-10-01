@@ -2,10 +2,10 @@
 
 Zap 的公开分发仓库，用于发布安装包、校验文件和使用说明。应用源码不存放在本仓库。
 
-## zapAgent — macOS Apple Silicon 正式版 1.14.1
+## zapAgent — macOS Apple Silicon 正式版 1.14.2
 
-- [正式版下载及校验文件](https://github.com/JackCaow/zapcode-releases/releases/tag/v1.14.1)
-- 新增持久化消息排队与安全引导；修复委派取消竞态；Guest 由同一发布提交重新构建，完整 Alpine 依赖已锁定并经双架构验证。
+- [正式版下载及校验文件](https://github.com/JackCaow/zapcode-releases/releases/tag/v1.14.2)
+- 新增 Provider 保存后直接选择模型，支持稍后选择、发现失败手动输入；连接列表按 m 管理模型，编辑连接保留原模型。
 - 使用个人 Developer ID Application 证书签名并通过 Apple 公证。
 - 仅支持 macOS Apple Silicon；Intel Mac、Linux、Windows 和 npm 安装入口不属于此次发布。
 - Agent 在 Host 上运行，进程工具进入本地 VM；**不是整个 Agent 或 Host 的完全隔离**。

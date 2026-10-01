@@ -1,9 +1,9 @@
 class Zapagent < Formula
   desc "Terminal AI agent with bundled local VM for Apple Silicon"
   homepage "https://github.com/JackCaow/zapcode-releases"
-  url "https://github.com/JackCaow/zapcode-releases/releases/download/v1.14.1/zapAgent-macos-arm64-1.14.1.tar.gz"
-  version "1.14.1"
-  sha256 "1ecde21d605255f81287ab33fbfbf267140ec35aa6f6547ff149497e1ad379df"
+  url "https://github.com/JackCaow/zapcode-releases/releases/download/v1.14.2/zapAgent-macos-arm64-1.14.2.tar.gz"
+  version "1.14.2"
+  sha256 "0ba9a1e553e9be484bfea2d5ca52ffe0f3987d152f57b85752e64f344443b96e"
 
   depends_on arch: :arm64
   depends_on :macos
@@ -36,7 +36,7 @@ class Zapagent < Formula
     ENV["ZAPCODE_DATA_DIR"] = (testpath/"profile").to_s
     %w[ZAPCODE_ZAPVM_CLOUD_CONFIG ZAPCODE_DISABLE_ZAPVM ZAPCODE_RESIDENT_AGENT ZAPCODE_ZAPVM_RUNTIME_DIR].each { |name| ENV.delete name }
     %w[zapAgent zap zapcode].each do |command|
-      assert_match "zapAgent v1.14.1", shell_output("#{bin}/#{command} --version")
+      assert_match "zapAgent v1.14.2", shell_output("#{bin}/#{command} --version")
       assert_match "Usage:", shell_output("#{bin}/#{command} --help")
     end
     system "/usr/bin/codesign", "--verify", "--strict", libexec/"zap"
