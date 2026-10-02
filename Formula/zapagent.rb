@@ -1,9 +1,9 @@
 class Zapagent < Formula
   desc "Terminal AI agent with bundled local VM for Apple Silicon"
   homepage "https://github.com/JackCaow/zapcode-releases"
-  url "https://github.com/JackCaow/zapcode-releases/releases/download/v1.14.2/zapAgent-macos-arm64-1.14.2-sparse.tar.gz"
-  version "1.14.2"
-  sha256 "e8313ded7399b786e4040f147422ad143c1fad3ecd3c81e67b120419a5636aff"
+  url "https://github.com/JackCaow/zapcode-releases/releases/download/v1.14.3/zapAgent-macos-arm64-1.14.3-sparse.tar.gz"
+  version "1.14.3"
+  sha256 "13d242168a10503749b3bbc49af101c4431031e7ab4d9237c5f4a3fd8f3e2078"
 
   depends_on arch: :arm64
   depends_on :macos
@@ -22,7 +22,7 @@ class Zapagent < Formula
     <<~EOS
       Apple Silicon only. Start from your project directory: zapAgent, zap or zapcode
       Configure your model with /connect. Data defaults to ~/.zapcode-vm.
-      The Host Agent uses the bundled VM for process tools; file tools and
+      Commands run under the host OS sandbox by default; the bundled VM is opt-in (ZAPCODE_EXECUTION=vm). File tools and
       MCP are not whole-Agent isolated. No model or API key is included.
       Signed with Developer ID and notarized by Apple. The tar package is
       not stapled; first-launch Gatekeeper verification requires connectivity.
@@ -36,7 +36,7 @@ class Zapagent < Formula
     ENV["ZAPCODE_DATA_DIR"] = (testpath/"profile").to_s
     %w[ZAPCODE_ZAPVM_CLOUD_CONFIG ZAPCODE_DISABLE_ZAPVM ZAPCODE_RESIDENT_AGENT ZAPCODE_ZAPVM_RUNTIME_DIR].each { |name| ENV.delete name }
     %w[zapAgent zap zapcode].each do |command|
-      assert_match "zapAgent v1.14.2", shell_output("#{bin}/#{command} --version")
+      assert_match "zapAgent v1.14.3", shell_output("#{bin}/#{command} --version")
       assert_match "Usage:", shell_output("#{bin}/#{command} --help")
     end
     system "/usr/bin/codesign", "--verify", "--strict", libexec/"zap"
