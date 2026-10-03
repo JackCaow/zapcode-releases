@@ -2,10 +2,10 @@
 
 Zap 的公开分发仓库，用于发布安装包、校验文件和使用说明。应用源码不存放在本仓库。
 
-## zapAgent — macOS Apple Silicon 正式版 1.14.5
+## zapAgent — macOS Apple Silicon 正式版 1.14.6
 
-- [正式版下载及校验文件](https://github.com/JackCaow/zapcode-releases/releases/tag/v1.14.5)
-- 只读命令（ls、cat、grep、git status/diff/log 等）在沙箱内不再逐条询问；沙箱内 git 使用真实二进制，blame、show 等不再因 xcrun 缓存失败。写入类命令仍需批准。
+- [正式版下载及校验文件](https://github.com/JackCaow/zapcode-releases/releases/tag/v1.14.6)
+- 沙箱内的命令不再逐条询问；包管理器缓存可写，pip/npm 安装无需沙箱外运行；沙箱网络改为域名白名单（macOS）。修复以 cd 开头的多行命令不执行、会话列表标题显示为斜杠命令。
 - 使用个人 Developer ID Application 证书签名并通过 Apple 公证。
 - 仅支持 macOS Apple Silicon；Intel Mac、Linux、Windows 和 npm 安装入口不属于此次发布。
 - Agent 在 Host 上运行，进程工具进入本地 VM；**不是整个 Agent 或 Host 的完全隔离**。
